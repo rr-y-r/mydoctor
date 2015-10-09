@@ -10,6 +10,26 @@
 </head>
 <body>
 
+	<div class="modal fade" id="doDiagModal" tabindex="-1" role="dialog" aria-labelledby="doDiagModal" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Hasil diagnosa</h4>
+              </div>
+              <div class="modal-body">
+                  <div class="container-fluid">
+
+                
+
+              </div>
+               </div>
+            </div>
+          </div>
+        </div>
+                        
+
+
 <!--a href="#" class="btn btn-sucess circle "><span class="glyphicon glyphicon-list-alt circle_btn"></span></a-->
 <img class="img-responsive btn-pos" id="cd-cart-trigger" src="<?=base_url('assets/images/circle-btn.png'); ?>" alt="btn" />
 	<!--button type="button" class="btn btn-success" id="cd-cart-trigger">Lihat Data Diagnosis</button -->
@@ -24,7 +44,7 @@
 			</li>
 		</ul> <!-- cd-cart-items -->
 
-		<a href="#" class="checkout-btn">DIAGNOSA</a>
+		<button type="button" class="checkout-btn" data-toggle="modal" data-target="#doDiagModal" onclick="return doDiag();">DIAGNOSA</button>
 		
 
 		
@@ -78,9 +98,22 @@
     <script src="<?=base_url('assets/js/classie.js'); ?>"></script>
     <script src="<?=base_url('assets/js/modernizr.js'); ?>" /></script>
     <script>
-    	
+    	var data = [];
+
+    	function doDiag(){
+				if($('ul.cd-cart-items').find("i").size()<=1){
+					alert('kosong om');
+					$('.checkout-btn').attr('disabled');
+				}
+
+				//console.log($('ul.cd-cart-items').find("li").size());
+			}
 
 		$( document ).ready(function(e){
+
+
+
+
 
 			var url='<?=site_url("test_class/test_alg/4"); ?>';
 
@@ -192,19 +225,47 @@ function move_navigation( $navigation, $MQ) {
 }
 
 function add_to_check(id){
+	
 	if( $('ul.cd-cart-items').find("li").size() <= 5){
 		$('#cd-cart-trigger').click();
-		$("#diagNav-"+id).fadeOut(1000);
+		$("#diagNav-"+id).fadeOut(800);
+		data['q'+$('ul.cd-cart-items').find("li").size()] = id;
+
+		test_data = new Array('q'+$('ul.cd-cart-items').find("li").size()+'='+id);
+		//console.log(data[$('ul.cd-cart-items').find("li").size()]);
+		console.log(test_data);
 		$('.cd-cart-items').append('<li class="diagnosis-basket diag-'+id+'" style="color:#666"><span class="diag-id" style="color:#666"></span><span class="diag-desc" style="color:#666">'+$("#diagDesc-"+id).text()+'</span><a href="#" class="cd-item-remove" style="color:#666" onclick="return removeDiag('+id+')">Remove</a></li>');
+		
+		var url='<?=site_url("test_class/getDiagData/"); ?>';
+		var diagdata_post = test_data.join('&');
+		$.post(url,diagdata_post, function(data){
+
+		});
 	}
 }
+/*
+function send_check(id, check_counter){
 
+	for(var i = 1; i<= check_counter;i++){
+		var dataTrigger_get =new Array('q1='+data_trigger[0],
+			                           'q2='+data_trigger[1],
+			                           'q3='+data_trigger[2],
+			                           'q4='+data_trigger[3],
+			                           'q5='+data_trigger[4]
+			                          );
+	}
+
+	var url='<?=site_url("test_class/get_diagnosa_result/"); ?>'+'/'+check_get;
+}
+*/
 
 function removeDiag(id){
 	$(".diag-"+id).remove();
 	$("#diagNav-"+id).fadeIn(1000);
 	//console.log($(".diag"+id));
 }
+
+
 
 
 

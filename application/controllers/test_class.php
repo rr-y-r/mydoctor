@@ -2,6 +2,7 @@
 
 class Test_class extends CI_Controller
 {
+	
 
 	public function __construct()
     {
@@ -9,6 +10,8 @@ class Test_class extends CI_Controller
 
         $this->load->model('dataModel');
     }
+
+
 
 	public function index(){
 		$d_data = $this->dataModel->getDataGejala_all();
@@ -59,6 +62,43 @@ class Test_class extends CI_Controller
         
         $json_dat = json_encode($griddata);
         echo $json_dat;
+    }
+
+
+	var $diag_data=[];
+    public function getDiagData(){
+    	$q1=$this->input->post('q1');
+    	$q2=$this->input->post('q2');
+    	$q3=$this->input->post('q3');
+    	$q4=$this->input->post('q4');
+    	$q5=$this->input->post('q5');
+
+		 
+
+
+
+    	if($q1!=null){
+    		 $diag_dataset = array_column($this->dataModel->getDiagnosis_testing($q1),'q1');
+    		 echo json_encode($diag_dataset);
+    	}
+    	if($q2!=null){
+    		$this->diag_data['q2'] = $q2;
+    	}
+    	if($q3!=null){
+    		$this->diag_data['q3'] = $q3;
+    	}
+    	if($q4!=null){
+    		$this->diag_data['q4'] = $q4;
+    	}
+    	if($q5!=null){
+    		$this->diag_data['q5'] = $q5;
+    	}
+    }
+
+    public function doDiagnose($q1){
+    	$test_data =  $this->dataModel->getDiagnosis_testing($q1);
+
+    	return $test_data;
     }
 
 	public function test_alg($check_counter){

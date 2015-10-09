@@ -47,10 +47,22 @@ class DataModel extends CI_Model
             ->result_array();
     }
 
+    function getDiagnosis_testing($q1){
+        return $this->db->select('q1,q2,q3,q4,q5')
+                ->from("rdata")
+                ->where('q1',$q1)
+                ->or_where('q2',$q1)
+                ->or_where('q3',$q1)
+                ->or_where('q4',$q1)
+                ->or_where('q5',$q1)
+                ->get()
+                ->result_array();
+    }
+
     function getDiagnosis_byTriggerTest($check_counter,$q1,$q2,$q3,$q4,$q5){
         switch ($check_counter){
             case 1:
-                
+
                 return $this->db->select('*')
                 ->from("rdata")
                 ->where('q1',$q1)
