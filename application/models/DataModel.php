@@ -48,7 +48,7 @@ class DataModel extends CI_Model
     }
 
     function getDiagnosis_testing($q1){
-        return $this->db->select('q1,q2,q3,q4,q5')
+        return $this->db->select('id_result,q1,q2,q3,q4,q5')
                 ->from("rdata")
                 ->where('q1',$q1)
                 ->or_where('q2',$q1)
@@ -190,6 +190,13 @@ class DataModel extends CI_Model
             ->row('id_diagnosis');
         
         $result = $this->db->get_where('diagnosis',array('id_diagnosis'=>$id))->result_array();
+        
+        return $result;
+    }
+    function get_result2($data){
+
+        
+        $result = $this->db->get_where('diagnosis',array('id_diagnosis'=>$data))->result_array();
         
         return $result;
     }

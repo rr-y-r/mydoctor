@@ -19,9 +19,9 @@
               </div>
               <div class="modal-body">
                   <div class="container-fluid">
-
-                
-
+                  <span class="modal-id-diag"></span>
+                  <span class="modal-diagnosis-diag"></span>
+                  <span class="modal-deskripsi-diag"></span>
               </div>
                </div>
             </div>
@@ -102,8 +102,7 @@
 
     	function doDiag(){
 				if($('ul.cd-cart-items').find("i").size()<=1){
-					alert('kosong om');
-					$('.checkout-btn').attr('disabled');
+
 				}
 
 				//console.log($('ul.cd-cart-items').find("li").size());
@@ -235,12 +234,63 @@ function add_to_check(id){
 		//console.log(data[$('ul.cd-cart-items').find("li").size()]);
 		console.log(test_data);
 		$('.cd-cart-items').append('<li class="diagnosis-basket diag-'+id+'" style="color:#666"><span class="diag-id" style="color:#666"></span><span class="diag-desc" style="color:#666">'+$("#diagDesc-"+id).text()+'</span><a href="#" class="cd-item-remove" style="color:#666" onclick="return removeDiag('+id+')">Remove</a></li>');
-		
-		var url='<?=site_url("test_class/getDiagData/"); ?>';
-		var diagdata_post = test_data.join('&');
-		$.post(url,diagdata_post, function(data){
+		if($('ul.cd-cart-items').find("li").size() == 2){
+			var url='<?=site_url("test_class/getDiagData_q1/"); ?>';
+			var url2='<?=site_url("test_class/get_result_from_q1/"); ?>';
+			var diagdata_post = test_data.join('&');
+			$.post(url,diagdata_post, function(data){
+				var data_grid = jQuery.parseJSON(data);
+				//38gantisamalength
+				for(var i=1;i<=38;i++){
+					$('#diagNav-'+i).hide();
+				}
+				$.each(data_grid,function(j,i){
+					$('#diagNav-'+i).show();
+				});
 
-		});
+				$.post(url2,diagdata_post, function(data2){
+					var data_result = jQuery.parseJSON(data2);
+					var data_result_arr = new Array();
+					$.each(data_result,function(j,i){
+						data_result_arr[j+1] = j+1+'='+i;
+
+					});
+
+					data_result_arr[0] = 'length='+data_result_arr.length;
+					var data_result_post = data_result_arr.join('&');
+
+						var urlx='<?=site_url("test_class/getDiagData_q2/"); ?>';
+						$.post(urlx,data_result_post, function(data3){
+							//var data_grid = jQuery.parseJSON(data);
+							//38gantisamalength
+						
+			                  var data_result2 = jQuery.parseJSON(data3);
+								var data_result_arr2 = new Array();
+								$.each(data_result2,function(j,i){
+									
+									$('.modal-body').html('<span>'+i[0].id_diagnosis+'. '+i[0].diagnosis+'</span></br><hr><span>'+i[0].deskripsi+'</span></br><hr>');
+
+								});
+						});
+					
+
+				});
+
+			});
+		}
+		//console.log('data->'+$('ul.cd-cart-items li:class'));
+		/*
+		if($('ul.cd-cart-items').find("li").size() == 3){
+			var urlx='<?=site_url("test_class/getDiagData_q2/"); ?>'+'?q1='+1;
+			var diagdatax_post = test_data.join('&');
+			$.post(urlx,diagdatax_post, function(data){
+				//var data_grid = jQuery.parseJSON(data);
+				//38gantisamalength
+
+
+			});
+		}*/
+
 	}
 }
 /*
@@ -261,7 +311,8 @@ function send_check(id, check_counter){
 
 function removeDiag(id){
 	$(".diag-"+id).remove();
-	$("#diagNav-"+id).fadeIn(1000);
+	$("#diagNav-"+id).fadeIn(800);
+
 	//console.log($(".diag"+id));
 }
 
