@@ -46,6 +46,132 @@ class DataModel extends CI_Model
         return $this->db->get_where('rdata',$data)
             ->result_array();
     }
+
+    function getDiagnosis_byTriggerTest($check_counter,$q1,$q2,$q3,$q4,$q5){
+        switch ($check_counter){
+            case 1:
+                
+                return $this->db->select('*')
+                ->from("rdata")
+                ->where('q1',$q1)
+                ->or_where('q2',$q1)
+                ->or_where('q3',$q1)
+                ->or_where('q4',$q1)
+                ->or_where('q5',$q1)
+                ->get()
+                ->result_array();
+            break;
+            case 2:
+            return $this->db->select('*')
+                ->from("rdata")
+                ->where('q1',$q1)
+                ->or_where('q2',$q1)
+                ->or_where('q3',$q1)
+                ->or_where('q4',$q1)
+                ->or_where('q5',$q1)
+                ->or_where('q1',$q2)
+                ->or_where('q2',$q2)
+                ->or_where('q3',$q2)
+                ->or_where('q4',$q2)
+                ->or_where('q5',$q2)
+                ->get()
+                ->result_array();
+
+            break;
+            case 3:
+            return $this->db->select('*')
+                ->from("rdata")
+                ->where('q1',$q1)
+                ->or_where('q2',$q1)
+                ->or_where('q3',$q1)
+                ->or_where('q4',$q1)
+                ->or_where('q5',$q1)
+                ->or_where('q1',$q2)
+                ->or_where('q2',$q2)
+                ->or_where('q3',$q2)
+                ->or_where('q4',$q2)
+                ->or_where('q5',$q2)
+                ->or_where('q1',$q3)
+                ->or_where('q2',$q3)
+                ->or_where('q3',$q3)
+                ->or_where('q4',$q3)
+                ->or_where('q5',$q3)
+                ->get()
+                ->result_array();
+
+            break;
+            case 4:
+            return $this->db->select('*')
+                ->from("rdata")
+                ->where('q1',$q1)
+                ->or_where('q2',$q1)
+                ->or_where('q3',$q1)
+                ->or_where('q4',$q1)
+                ->or_where('q5',$q1)
+                ->or_where('q1',$q2)
+                ->or_where('q2',$q2)
+                ->or_where('q3',$q2)
+                ->or_where('q4',$q2)
+                ->or_where('q5',$q2)
+                ->or_where('q1',$q3)
+                ->or_where('q2',$q3)
+                ->or_where('q3',$q3)
+                ->or_where('q4',$q3)
+                ->or_where('q5',$q3)
+                ->or_where('q1',$q4)
+                ->or_where('q2',$q4)
+                ->or_where('q3',$q4)
+                ->or_where('q4',$q4)
+                ->or_where('q5',$q4)
+                ->get()
+                ->result_array();
+
+            break;
+            case 5:
+            return $this->db->select('*')
+                ->from("rdata")
+                ->where('q1',$q1)
+                ->or_where('q2',$q1)
+                ->or_where('q3',$q1)
+                ->or_where('q4',$q1)
+                ->or_where('q5',$q1)
+                ->or_where('q1',$q2)
+                ->or_where('q2',$q2)
+                ->or_where('q3',$q2)
+                ->or_where('q4',$q2)
+                ->or_where('q5',$q2)
+                ->or_where('q1',$q3)
+                ->or_where('q2',$q3)
+                ->or_where('q3',$q3)
+                ->or_where('q4',$q3)
+                ->or_where('q5',$q3)
+                ->or_where('q1',$q4)
+                ->or_where('q2',$q4)
+                ->or_where('q3',$q4)
+                ->or_where('q4',$q4)
+                ->or_where('q5',$q4)
+                ->or_where('q1',$q5)
+                ->or_where('q2',$q5)
+                ->or_where('q3',$q5)
+                ->or_where('q4',$q5)
+                ->or_where('q5',$q5)
+                ->get()
+                ->result_array();
+
+            break;
+        }
+        /*
+        return $this->db->select('*')
+            ->from("rdata")
+            ->where($data)
+            ->or_where($data)
+            ->or_where($data)
+            ->or_where($data)
+            ->or_where($data)
+            ->get()
+            ->result_array();
+            */
+    }
     
     function get_result($data){
         $id = $this->db->get_where('rdata',$data)

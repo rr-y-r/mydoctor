@@ -113,6 +113,8 @@ class Apps extends CI_Controller
                 break;
             
         }
+
+        echo json_encode($data);
         
         foreach($data as $index => $value){
             //$new_data=array($index => $value);//echo 'index'.$index;
@@ -211,6 +213,9 @@ class Apps extends CI_Controller
             
         }
 
+        echo json_encode($data);
+
+        /*
          foreach($data as $index => $value){
             //$new_data=array($index => $value);//echo 'index'.$index;
 
@@ -223,12 +228,12 @@ class Apps extends CI_Controller
 
 
             }
-            */
+            
         }
 
 
 
-        $this->dataModel->getDiagnomsis_byTriggerTest($data);
+        $this->dataModel->getDiagnosis_byTriggerTest($data); */
     }
     
     function apps(){
