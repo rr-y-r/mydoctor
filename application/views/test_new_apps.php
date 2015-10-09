@@ -11,7 +11,7 @@
 <body>
 
 
-	<button type="button" class="btn btn-success" id="cd-cart-trigger"></button>
+	<button type="button" class="btn btn-success" id="cd-cart-trigger">Lihat Data Diagnosis</button>
 
 	<div id="cd-shadow-layer"></div>
 
@@ -34,58 +34,15 @@
 
 		<section class="grid">
 			<!-- Products -->
+			<? foreach($gejala_data as $gejala): ?>
+				<div class="product" id="diagNav-<?=$gejala['id_gejala']; ?>" onclick="return add_to_check(<?=$gejala['id_gejala']; ?>);">
+					<div class="product__info" data-gejala-id="<?=$gejala['id_gejala']; ?>">
+						<img class="product__image" src="<?=base_url('assets/images/demam.png'); ?>" alt="gejala 1" />
+						<h3 class="product__title" id="diagDesc-<?=$gejala['id_gejala']; ?>"><?=$gejala['id_gejala']; ?>. <?=$gejala['gejala']; ?></h3>
+					</div>
+				</div>
+			<? endforeach; ?>
 
-			<div class="product " id="" onclick="return add_to_check(1);">
-				<div class="product__info" data-gejala-id="">
-					<img class="product__image" src="<?=base_url('assets/images/aid.png'); ?>" alt="Product 1" />
-					<h3 class="product__title"></h3>
-				</div>
-			</div>
-
-			<div class="product " id="" onclick="return add_to_check(2);">
-				<div class="product__info" data-gejala-id="" >
-					<img class="product__image" src="<?=base_url('assets/images/aid.png'); ?>" alt="Product 1" />
-					<h3 class="product__title"></h3>
-				</div>
-			</div>
-			<div class="product " id="" onclick="return add_to_check(3);">
-				<div class="product__info" data-gejala-id="">
-					<img class="product__image" src="<?=base_url('assets/images/aid.png'); ?>" alt="Product 1" />
-					<h3 class="product__title"></h3>
-				</div>
-			</div>
-			<div class="product " id="" onclick="return add_to_check(4);">
-				<div class="product__info" data-gejala-id="">
-					<img class="product__image" src="<?=base_url('assets/images/aid.png'); ?>" alt="Product 1" />
-					<h3 class="product__title"></h3>
-				</div>
-			</div>
-			<div class="product " id="" onclick="return add_to_check(5);">
-				<div class="product__info" data-gejala-id="">
-					<img class="product__image" src="<?=base_url('assets/images/aid.png'); ?>" alt="Product 1" />
-					<h3 class="product__title"></h3>
-				</div>
-			</div>
-			<div class="product " id="" onclick="return add_to_check(6);">
-				<div class="product__info" data-gejala-id="">
-					<img class="product__image" src="<?=base_url('assets/images/aid.png'); ?>" alt="Product 1" />
-					<h3 class="product__title"></h3>
-				</div>
-			</div>
-			<div class="product " id="" onclick="return add_to_check(7);">
-				<div class="product__info" data-gejala-id="">
-					<img class="product__image" src="<?=base_url('assets/images/aid.png'); ?>" alt="Product 1" />
-					<h3 class="product__title"></h3>
-				</div>
-			</div>
-			<div class="product " id="" onclick="return add_to_check(8);">
-				<div class="product__info" data-gejala-id="">
-					<img class="product__image" src="<?=base_url('assets/images/aid.png'); ?>" alt="Product 1" />
-					<h3 class="product__title"></h3>
-				</div>
-			</div>
-	        
-	        
 		</section>
 
 			
@@ -211,9 +168,18 @@ function move_navigation( $navigation, $MQ) {
 }
 
 function add_to_check(id){
-	$('#cd-cart-trigger').click();
-	$(this).addClass('disabled');
-	$('.cd-cart-items').append('<li class="diagnosis-basket" style="color:#666"><span class="diag-id">'+id+'</span><span class="diag-desc"></span>li>');
+	if( $('ul.cd-cart-items').find("li").size() <= 5){
+		$('#cd-cart-trigger').click();
+		$("#diagNav-"+id).fadeOut(1000);
+		$('.cd-cart-items').append('<li class="diagnosis-basket diag-'+id+'" style="color:#666"><span class="diag-id" style="color:#666"></span><span class="diag-desc" style="color:#666">'+$("#diagDesc-"+id).text()+'</span><a href="#" class="cd-item-remove" style="color:#666" onclick="return removeDiag('+id+')">Remove</a></li>');
+	}
+}
+
+
+function removeDiag(id){
+	$(".diag-"+id).remove();
+	$("#diagNav-"+id).fadeIn(1000);
+	//console.log($(".diag"+id));
 }
 
 

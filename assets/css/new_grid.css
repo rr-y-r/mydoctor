@@ -289,7 +289,7 @@ header {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: url("../img/cd-remove-item.svg") no-repeat center center;
+
 }
 .no-touch #cd-cart .cd-item-remove:hover {
   background-color: #e0e6ef;

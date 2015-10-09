@@ -11,7 +11,11 @@ class Test_class extends CI_Controller
     }
 
 	public function index(){
-		$this->load->view('test_new_apps');
+		$d_data = $this->dataModel->getDataGejala_all();
+        
+        $this->load->view('test_new_apps', array(
+            'gejala_data'=>$d_data));
+		//$this->load->view('test_new_apps');
 	}
 
 	function init_grid(){

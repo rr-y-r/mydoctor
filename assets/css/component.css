@@ -55,7 +55,7 @@
 	min-width: 16em;
 	margin: 0 1em 2.5em;
 	padding: 1.5em 1.5em 2em;
-	background: #F2784B;
+	background: rgba(255,255,255,.8);
 	border-radius: 5px;
 }
 
