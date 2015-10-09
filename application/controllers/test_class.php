@@ -123,6 +123,7 @@ class Test_class extends CI_Controller
         }
 
         */
+        /*
         switch ($check_counter) {
             case 1:
                 $q1=$this->input->post('q1');
@@ -174,6 +175,7 @@ class Test_class extends CI_Controller
                 break;
             
         }
+        */
 
       //  echo json_encode($data);
 
