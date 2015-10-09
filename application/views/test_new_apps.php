@@ -23,7 +23,7 @@
 			</li>
 		</ul> <!-- cd-cart-items -->
 
-		<a href="#0" class="checkout-btn">Checkout</a>
+		<a href="#" class="checkout-btn">DIAGNOSA</a>
 		
 		
 	</div> <!-- cd-cart -->
@@ -37,7 +37,28 @@
 			<? foreach($gejala_data as $gejala): ?>
 				<div class="product" id="diagNav-<?=$gejala['id_gejala']; ?>" onclick="return add_to_check(<?=$gejala['id_gejala']; ?>);">
 					<div class="product__info" data-gejala-id="<?=$gejala['id_gejala']; ?>">
-						<img class="product__image" src="<?=base_url('assets/images/demam.png'); ?>" alt="gejala 1" />
+						<? if($gejala['id_gejala'] ==1): ?>
+							<img class="product__image" src="<?=base_url('assets/images/demam.png'); ?>" alt="gejala 1" />
+						<? endif; ?>
+						<? if($gejala['id_gejala'] ==3): ?>
+							<img class="product__image" src="<?=base_url('assets/images/headache.png'); ?>" alt="gejala 1" />
+						<? endif; ?>
+						<? if($gejala['id_gejala'] == 2): ?>
+							<img class="product__image" src="<?=base_url('assets/images/sakit.png'); ?>" alt="gejala 1" />
+						<? endif; ?>
+						<? if($gejala['id_gejala'] == 6 or $gejala['id_gejala'] == 7): ?>
+							<img class="product__image" src="<?=base_url('assets/images/flu.png'); ?>" alt="gejala 1" />
+						<? endif; ?>
+						<? if($gejala['id_gejala'] == 11): ?>
+							<img class="product__image" src="<?=base_url('assets/images/batuk.png'); ?>" alt="gejala 1" />
+						<? endif; ?>
+						<? if($gejala['id_gejala'] == 13): ?>
+							<img class="product__image" src="<?=base_url('assets/images/demam2.png'); ?>" alt="gejala 1" />
+						<? endif; ?>
+						<? if($gejala['id_gejala'] != 13 and $gejala['id_gejala'] != 3 and $gejala['id_gejala'] != 2 and $gejala['id_gejala'] != 6 and $gejala['id_gejala'] != 7 and $gejala['id_gejala'] != 11 and $gejala['id_gejala'] != 1): ?>
+							<img class="product__image" src="<?=base_url('assets/images/demam2.png'); ?>" alt="gejala 1" />
+						<? endif; ?>
+						
 						<h3 class="product__title" id="diagDesc-<?=$gejala['id_gejala']; ?>"><?=$gejala['id_gejala']; ?>. <?=$gejala['gejala']; ?></h3>
 					</div>
 				</div>
