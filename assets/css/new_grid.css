@@ -112,12 +112,10 @@ header {
 }
 
 #cd-hamburger-menu, #cd-cart-trigger {
-  position: absolute;
-  top: 0;
+
 }
 #cd-hamburger-menu a, #cd-cart-trigger a {
-  width: 60px;
-  height: 100%;
+
 }
 
 #cd-hamburger-menu {
@@ -133,7 +131,7 @@ header {
 }
 
 #cd-cart-trigger {
-  right: 0;
+
 }
 #cd-cart-trigger a {
   background: #26292f url("../img/cd-cart.svg") no-repeat center center;

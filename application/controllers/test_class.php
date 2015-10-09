@@ -18,6 +18,10 @@ class Test_class extends CI_Controller
 		//$this->load->view('test_new_apps');
 	}
 
+	public function diag_process($check_counter){
+
+	}
+
 	function init_grid(){
         
         $data = $this->dataModel->init_grid();

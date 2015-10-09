@@ -232,6 +232,16 @@ a:hover {
     margin-right: auto;
 }
 
+.circle_btn{
+	font-size: 55px;
+	vertical-align: center;
+	text-align: center;
+
+}
+
+.btn-pos{
+	cursor: pointer;
+}
 
 .doctor-text{
     margin-left:10%;
@@ -268,6 +278,8 @@ a:hover {
         font-size : 13px;
         width: 10%;
     }
+
+
 }
 
 /* Landscape */
@@ -286,6 +298,8 @@ a:hover {
   and (device-width: 320px) 
   and (device-height: 640px) 
   and (-webkit-device-pixel-ratio: 3) {
+
+
 
 }
 

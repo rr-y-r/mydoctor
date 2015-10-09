@@ -10,8 +10,9 @@
 </head>
 <body>
 
-
-	<button type="button" class="btn btn-success" id="cd-cart-trigger">Lihat Data Diagnosis</button>
+<!--a href="#" class="btn btn-sucess circle "><span class="glyphicon glyphicon-list-alt circle_btn"></span></a-->
+<img class="img-responsive btn-pos" id="cd-cart-trigger" src="<?=base_url('assets/images/circle-btn.png'); ?>" alt="btn" />
+	<!--button type="button" class="btn btn-success" id="cd-cart-trigger">Lihat Data Diagnosis</button -->
 
 	<div id="cd-shadow-layer"></div>
 
@@ -24,6 +25,8 @@
 		</ul> <!-- cd-cart-items -->
 
 		<a href="#" class="checkout-btn">DIAGNOSA</a>
+		
+
 		
 		
 	</div> <!-- cd-cart -->
@@ -202,6 +205,7 @@ function removeDiag(id){
 	$("#diagNav-"+id).fadeIn(1000);
 	//console.log($(".diag"+id));
 }
+
 
 
     </script>
